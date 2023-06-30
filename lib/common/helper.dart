@@ -215,7 +215,9 @@ class Helper {
 
   static bip32.BIP32 createWallet({bool isPrivate = false, String content = ''}) {
     if (isPrivate) {
-      return bip32.BIP32.fromPrivateKey(HEX.decode(content) as Uint8List, Uint8List(32));
+      var decodedKey = Base58Decode(content);
+      var privateKey = Uint8List.fromList(decodedKey.sublist(1, 33));
+      return bip32.BIP32.fromPrivateKey(privateKey, Uint8List(32));
     } else {
       return getWalletByMnemonic(content);
     }

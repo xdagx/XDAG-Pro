@@ -115,7 +115,7 @@ class _CreateWalletPageState extends State<CreateWalletPage> {
     bool isButtonEnable = walletName.trim().isNotEmpty && isAgree;
     if (args.isImport) {
       if (isPrivateKey) {
-        isButtonEnable = isButtonEnable && importContent.length == 64;
+        isButtonEnable = isButtonEnable && importContent.length >= 50;
       } else {
         List content = importContent.split(" ");
         isButtonEnable = isButtonEnable && content.length >= 12;
